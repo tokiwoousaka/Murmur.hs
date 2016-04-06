@@ -15,20 +15,22 @@ main = run_ $ Group "Simple twitter CLI client"
   , subCmd "auth" cmdAuth
   ]
   
-cmdHome :: Cmd "Show your home timeline" ()
-cmdHome = liftIO $ do
+cmdHome :: Flag "l" '["Length"] "LEN" "length for Tweets list" (Def "20" Int)
+  -> Cmd "Show user home timeline" ()
+cmdHome ln = liftIO $ do
   twInfo <- readTWInfo
-  showHomeTimeline twInfo
+  showHomeTimeline twInfo $ get ln
 
 cmdPost :: Arg "MESSAGE" String -> Cmd "Post new tweet" ()
 cmdPost msg = liftIO $ do
   twInfo <- readTWInfo
   postTweet twInfo $ get msg
 
-cmdMention :: Cmd "Show mentions for you" ()
-cmdMention = liftIO $ do
+cmdMention :: Flag "l" '["Length"] "LEN" "length for mentions list" (Def "20" Int)
+  -> Cmd "Show mentions for you" ()
+cmdMention ln = liftIO $ do
   twInfo <- readTWInfo
-  showMentionsTimeline twInfo  
+  showMentionsTimeline twInfo $ get ln
 
 cmdReply :: Flag "i" '["Id"] "StatusID" "Target tweet id" Integer 
   -> Arg "MESSAGE" String -> Cmd "Post new tweet" ()

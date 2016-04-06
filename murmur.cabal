@@ -1,16 +1,15 @@
 name:                murmur
-version:             0.0.0.1
-synopsis:            Initial project template from stack
-description:         Please see README.md
+version:             0.0.0.2
+synopsis:            Simple CUI Twitter Client.
+description:         This package privides simple CUI Twitter client. and very easy API.
 homepage:            http://github.com/tokiwoousaka/murmur#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2016 Author name here
+author:              Tokiwo Ousaka
+maintainer:          its.out.of.tune.this.my.music@gmail.com
+copyright:           2016 Author Tokiwo Ousaka
 category:            Web
 build-type:          Simple
--- extra-source-files:
 cabal-version:       >=1.10
 
 library

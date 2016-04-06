@@ -64,18 +64,18 @@ post twInfo req = do
   return ()
 
 -- GetTimeline
-showMentionsTimeline :: TWInfo -> IO ()
-showMentionsTimeline = showTimeline mentionsTimeline
+showMentionsTimeline :: TWInfo -> Int -> IO ()
+showMentionsTimeline twInfo = showTimeline mentionsTimeline twInfo
 
-showHomeTimeline :: TWInfo -> IO ()
-showHomeTimeline = showTimeline homeTimeline
+showHomeTimeline :: TWInfo -> Int -> IO ()
+showHomeTimeline twInfo = showTimeline homeTimeline twInfo
 
-showTimeline :: HasMaxIdParam (APIRequest a [Status]) => APIRequest a [Status] -> TWInfo -> IO ()
-showTimeline status twInfo = do
+showTimeline :: HasMaxIdParam (APIRequest a [Status]) => APIRequest a [Status] -> TWInfo -> Int -> IO ()
+showTimeline status twInfo ln = do
   mgr <- newManager tlsManagerSettings
   runResourceT $ do
     let src = sourceWithMaxId twInfo mgr status
-    src $= CL.isolate 20 $$ CL.mapM_ putTweetLn
+    src $= CL.isolate ln $$ CL.mapM_ putTweetLn
 
 putTweetLn :: MonadIO m => Status -> m ()
 putTweetLn st = liftIO . T.putStrLn . T.concat $ 
