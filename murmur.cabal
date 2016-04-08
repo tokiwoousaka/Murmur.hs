@@ -2,7 +2,7 @@ name:                murmur
 version:             0.0.0.2
 synopsis:            Simple CUI Twitter Client.
 description:         This package privides simple CUI Twitter client. and very easy API.
-homepage:            http://github.com/tokiwoousaka/murmur#readme
+homepage:            https://github.com/tokiwoousaka/Murmur.hs#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Tokiwo Ousaka
@@ -53,4 +53,4 @@ test-suite murmur-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/murmur
+  location: https://github.com/tokiwoousaka/Murmur.hs
